@@ -90,8 +90,8 @@ export function Estimator({ onEstimate }: { onEstimate: (v: number, device: stri
   const [model, setModel] = useState("");
   const [year, setYear] = useState("2023");
   const [condition, setCondition] = useState<string>("Good");
-  const [screen, setScreen] = useState(screenOptions[0].key);
-  const [battery, setBattery] = useState(batteryOptions[0].key);
+  const [screen, setScreen] = useState(screenOptions[0]!.key);
+  const [battery, setBattery] = useState(batteryOptions[0]!.key);
   const [accessories, setAccessories] = useState<string[]>(["Charger"]);
   const [photos, setPhotos] = useState<string[]>([]);
   const [result, setResult] = useState<number | null>(null);
