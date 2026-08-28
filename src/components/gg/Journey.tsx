@@ -46,7 +46,7 @@ const stages = [
 
 export function Journey() {
   const [active, setActive] = useState(0);
-  const Stage = stages[active];
+  const Stage = stages[active]!;
   const Icon = Stage.icon;
 
   return (

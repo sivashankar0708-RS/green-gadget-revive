@@ -124,7 +124,7 @@ export function Store() {
               min={2000}
               max={60000}
               step={1000}
-              onValueChange={(v) => setMaxPrice(v[0])}
+              onValueChange={(v) => setMaxPrice(v[0] ?? 60000)}
               className="mt-3"
             />
           </div>
