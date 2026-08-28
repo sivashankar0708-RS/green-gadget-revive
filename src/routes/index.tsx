@@ -1,24 +1,65 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import { Navbar } from "@/components/gg/Navbar";
+import { Hero } from "@/components/gg/Hero";
+import { Estimator } from "@/components/gg/Estimator";
+import { HowItWorks } from "@/components/gg/HowItWorks";
+import { Booking } from "@/components/gg/Booking";
+import { Store } from "@/components/gg/Store";
+import { EcoImpact } from "@/components/gg/EcoImpact";
+import { Journey } from "@/components/gg/Journey";
+import { DataSecurity } from "@/components/gg/DataSecurity";
+import { Rewards } from "@/components/gg/Rewards";
+import { Testimonials } from "@/components/gg/Testimonials";
+import { Faq } from "@/components/gg/Faq";
+import { Contact } from "@/components/gg/Contact";
+import { Footer } from "@/components/gg/Footer";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const title = "GreenGadget | Sell Old Gadgets, Buy Certified Refurbished";
+const description =
+  "Sell smartphones, laptops and tablets at the best buyback price. Free doorstep pickup, certified data wipe, instant payment and refurbished devices up to 60% off.";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
+  const [estimate, setEstimate] = useState<number | null>(null);
+  const [device, setDevice] = useState("");
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen">
+      <Navbar />
+      <main>
+        <Hero />
+        <Estimator
+          onEstimate={(v, d) => {
+            setEstimate(v);
+            setDevice(d);
+          }}
+        />
+        <HowItWorks />
+        <Booking estimate={estimate} device={device} />
+        <Store />
+        <EcoImpact />
+        <Journey />
+        <DataSecurity />
+        <Rewards />
+        <Testimonials />
+        <Faq />
+        <Contact />
+      </main>
+      <Footer />
     </div>
   );
 }
